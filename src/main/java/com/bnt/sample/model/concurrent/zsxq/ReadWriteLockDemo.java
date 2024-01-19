@@ -20,7 +20,7 @@ public class ReadWriteLockDemo {
         readLock.lock();
         try {
             System.out.println(Thread.currentThread().getName() + "得到读锁，正在读取");
-            Thread.sleep(500);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         } finally {
@@ -33,7 +33,7 @@ public class ReadWriteLockDemo {
         writeLock.lock();
         try {
             System.out.println(Thread.currentThread().getName() + "得到写锁，正在写");
-            Thread.sleep(500);
+            Thread.sleep(5000);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -42,11 +42,10 @@ public class ReadWriteLockDemo {
         }
     }
 
-    public static void main(String[] args) {
-        new Thread(() -> read()).start();
-        new Thread(() -> read()).start();
-        new Thread(() -> read()).start();
-        new Thread(() -> write()).start();
-        new Thread(() -> write()).start();
+    public static void main(String[] args) throws InterruptedException {
+        new Thread(() -> read(), "Thread-2").start();
+        new Thread(() -> read(), "Thread-4").start();
+        new Thread(() -> write(), "Thread-3").start();
+        new Thread(() -> read(),"Thread-5").start();
     }
 }
