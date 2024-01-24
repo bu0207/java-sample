@@ -1,9 +1,6 @@
 package com.bnt.sample.model.concurrent.zsxq;
 
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.PriorityBlockingQueue;
-import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.*;
 
 /**
  * 阻塞队列
@@ -106,6 +103,20 @@ public class BlockingQueueTest {
         SynchronousQueue synchronousQueue = new SynchronousQueue();
         synchronousQueue.size();
         PriorityBlockingQueue priorityBlockingQueue = new PriorityBlockingQueue();
-        priorityBlockingQueue
+        priorityBlockingQueue.size();
+        DelayQueue<Delayed> delayQueue = new DelayQueue<>();
+        delayQueue.put(new Delayed() {
+            @Override
+            public int compareTo(Delayed o) {
+                return 0;
+            }
+
+            @Override
+            public long getDelay(TimeUnit unit) {
+                return unit.toMinutes(10);
+            }
+        });
+
+        ConcurrentLinkedQueue<Object> objects = new ConcurrentLinkedQueue<>();
     }
 }
