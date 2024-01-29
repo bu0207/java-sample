@@ -3,6 +3,7 @@ package com.bnt.sample.model.concurrent.zsxq;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.*;
+import java.util.stream.IntStream;
 
 /**
  * atomic 原子类
@@ -96,7 +97,12 @@ public class AtomicTest {
         }
     }
 
-    public static void main(String[] args) throws InterruptedException {
+    /**
+     * AtomicLong 与 LongAdder 的区别
+     * @param args
+     * @throws InterruptedException
+     */
+    public static void main2(String[] args) throws InterruptedException {
 //        AtomicLong counter = new AtomicLong(0);
 //        ExecutorService service = Executors.newFixedThreadPool(16);
 //        for (int i = 0; i < 100; i++) {
@@ -112,5 +118,16 @@ public class AtomicTest {
         }
         Thread.sleep(2000);
         System.out.println(counter.sum());
+    }
+
+    /**
+     * Accumulator的介绍
+     */
+    public static void main(String[] args) throws InterruptedException {
+        LongAccumulator longAccumulator = new LongAccumulator((a, b) -> a + b, 0);
+        ExecutorService service = Executors.newFixedThreadPool(8);
+        IntStream.range(0, 10).forEach(i -> service.submit(() -> longAccumulator.accumulate(i)));
+        Thread.sleep(2000);
+        System.out.println(longAccumulator.getThenReset());
     }
 }
