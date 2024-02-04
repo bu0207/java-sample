@@ -9,7 +9,7 @@ package com.bnt.sample.model.concurrent.zsxq;
  * @history
  */
 public class SingletonTest {
-    private static SingletonTest singletonTest;
+    private static volatile SingletonTest singletonTest;
 
     private SingletonTest() {
 
