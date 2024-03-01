@@ -35,30 +35,30 @@ public class ArrayTest {
     /**
      * 删除索引 index 处的元素
      */
-    static void remove(int[] nums,int index){
-        for (int i = index;i < nums.length-1;i++){
-            nums[i] = nums[i+1];
+    static void remove(int[] nums, int index) {
+        for (int i = index; i < nums.length - 1; i++) {
+            nums[i] = nums[i + 1];
         }
     }
 
     /**
      * 遍历数组
      */
-    static void traverse(int[] nums){
+    static void traverse(int[] nums) {
         int count = 0;
         // 通过索引遍历数组
-        for (int i = 0; i < nums.length; i++){
+        for (int i = 0; i < nums.length; i++) {
             count += nums[i];
         }
-        for (int num:nums){
-            count +=num;
+        for (int num : nums) {
+            count += num;
         }
     }
 
     /* 在数组中查找指定元素 */
     static int find(int[] nums, int target) {
         for (int i = 0; i < nums.length; i++) {
-            if (target == nums[i]){
+            if (target == nums[i]) {
                 return i;
             }
         }
