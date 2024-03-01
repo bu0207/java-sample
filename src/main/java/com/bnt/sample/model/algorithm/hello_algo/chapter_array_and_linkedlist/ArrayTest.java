@@ -88,6 +88,7 @@ public class ArrayTest {
         int randomNum = randomAccess(nums);
         System.out.println("在 nums 中获取随机元素=" + randomNum);
 
+        /* 插入元素 */
         insert(nums, 3, 6);
         System.out.println("在索引 3 处插入数字 6 ，得到 nums = " + Arrays.toString(nums));
 
