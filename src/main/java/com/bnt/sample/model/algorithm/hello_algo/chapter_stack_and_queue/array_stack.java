@@ -49,7 +49,7 @@ class ArrayStackTest {
     }
 }
 
-public class array_queue {
+public class array_stack {
     public static void main(String[] args) {
         /* 初始化栈 */
         ArrayStackTest stack = new ArrayStackTest();
