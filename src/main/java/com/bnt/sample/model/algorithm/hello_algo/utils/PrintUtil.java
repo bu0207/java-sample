@@ -1,7 +1,10 @@
 package com.bnt.sample.model.algorithm.hello_algo.utils;
 
+import org.checkerframework.checker.units.qual.K;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 输出
@@ -23,5 +26,14 @@ public class PrintUtil {
             head = head.next;
         }
         System.out.println(String.join(",", list));
+    }
+
+    /**
+     * 输出hashMap
+     */
+    public static <K, V> void printHashMap(Map<K, V> map) {
+        for (Map.Entry<K, V> kvEntry : map.entrySet()) {
+            System.out.println(kvEntry.getKey() + " -> " + kvEntry.getValue());
+        }
     }
 }
