@@ -1,6 +1,5 @@
 package com.bnt.sample.model.algorithm.hello_algo.utils;
 
-import org.checkerframework.checker.units.qual.K;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +13,16 @@ import java.util.Map;
  * @create 2024/3/1 11:40 bnt
  * @history
  */
+class Trunk {
+    Trunk prev;
+    String str;
+
+    public Trunk(Trunk prev, String str) {
+        this.prev = prev;
+        this.str = str;
+    }
+}
+
 public class PrintUtil {
 
     /**
@@ -35,5 +44,55 @@ public class PrintUtil {
         for (Map.Entry<K, V> kvEntry : map.entrySet()) {
             System.out.println(kvEntry.getKey() + " -> " + kvEntry.getValue());
         }
+    }
+
+    /**
+     * 打印二叉树
+     *
+     * @param root
+     */
+    public static void printTree(TreeNode root) {
+        printTree(root, null, false);
+    }
+
+    public static void printTree(TreeNode root, Trunk prev, boolean isRight) {
+        if (root == null) {
+            return;
+        }
+
+        String prev_str = "    ";
+        Trunk trunk = new Trunk(prev, prev_str);
+
+        printTree(root.right, trunk, true);
+
+        if (prev == null) {
+            trunk.str = "———";
+        } else if (isRight) {
+            trunk.str = "/———";
+            prev_str = "   |";
+        } else {
+            trunk.str = "\\———";
+            prev.str = prev_str;
+        }
+
+        showTrunks(trunk);
+        System.out.println(" " + root.val);
+
+        if (prev != null) {
+            prev.str = prev_str;
+        }
+        trunk.str = "   |";
+
+        printTree(root.left, trunk, false);
+    }
+
+    /* 打印二叉树分支 */
+    public static void showTrunks(Trunk p) {
+        if (p == null) {
+            return;
+        }
+
+        showTrunks(p.prev);
+        System.out.print(p.str);
     }
 }
