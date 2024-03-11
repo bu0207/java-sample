@@ -39,4 +39,13 @@ public class TreeNode {
     public static TreeNode listToTree(List<Integer> arr) {
         return listToTreeDFS(arr, 0);
     }
+
+    public String toString() {
+        return "TreeNode{" +
+                "val=" + val +
+                ", height=" + height +
+                ", left=" + left +
+                ", right=" + right +
+                '}';
+    }
 }
