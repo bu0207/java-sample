@@ -2,9 +2,7 @@ package com.bnt.sample.model.algorithm.hello_algo.chapter_heap;
 
 import com.bnt.sample.model.algorithm.hello_algo.utils.PrintUtil;
 
-import java.util.List;
-import java.util.PriorityQueue;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * 大顶堆实现
@@ -14,9 +12,16 @@ import java.util.Queue;
  * @create 2024/3/12 14:35 bnt
  * @history
  */
-public class MaxHeap {
+class MaxHeap {
     // 使用列表而非数组，无需考虑扩容问题
     private List<Integer> maxHeap;
+
+    public MaxHeap(List<Integer> list) {
+        maxHeap = new ArrayList<>(list);
+        for (int i = parent(size() - 1); i >= 0; i--) {
+            siftDown(i);
+        }
+    }
 
     /* 获取左子节点的索引 */
     public int left(int i) {
@@ -113,5 +118,37 @@ public class MaxHeap {
         Queue<Integer> queue = new PriorityQueue<>((a, b) -> b - a);
         queue.addAll(maxHeap);
         PrintUtil.printHeap(queue);
+    }
+}
+
+public class my_heap {
+    public static void main(String[] args) {
+        /* 初始化大顶堆 */
+        MaxHeap maxHeap = new MaxHeap(Arrays.asList(9, 8, 6, 6, 7, 5, 2, 1, 4, 3, 6, 2));
+        System.out.println("\n输入列表并建堆后");
+        maxHeap.print();
+
+        /* 获取堆顶元素 */
+        int peek = maxHeap.peek();
+        System.out.format("\n堆顶元素为 %d\n", peek);
+
+        /* 元素入堆 */
+        int val = 7;
+        maxHeap.push(val);
+        System.out.format("\n元素 %d 入堆后\n", val);
+        maxHeap.print();
+
+        /* 堆顶元素出堆 */
+        peek = maxHeap.pop();
+        System.out.format("\n堆顶元素 %d 出堆后\n", peek);
+        maxHeap.print();
+
+        /* 获取堆大小 */
+        int size = maxHeap.size();
+        System.out.format("\n堆元素数量为 %d\n", size);
+
+        /* 判断堆是否为空 */
+        boolean isEmpty = maxHeap.isEmpty();
+        System.out.format("\n堆是否为空 %b\n", isEmpty);
     }
 }
