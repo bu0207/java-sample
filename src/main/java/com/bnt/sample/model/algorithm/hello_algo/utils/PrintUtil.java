@@ -4,6 +4,7 @@ package com.bnt.sample.model.algorithm.hello_algo.utils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 
 /**
  * 输出
@@ -94,5 +95,15 @@ public class PrintUtil {
 
         showTrunks(p.prev);
         System.out.print(p.str);
+    }
+
+    /* Print a heap (PriorityQueue) */
+    public static void printHeap(Queue<Integer> queue) {
+        List<Integer> list = new ArrayList<>(queue);
+        System.out.print("堆的数组表示：");
+        System.out.println(list);
+        System.out.println("堆的树状表示：");
+        TreeNode root = TreeNode.listToTree(list);
+        printTree(root);
     }
 }
