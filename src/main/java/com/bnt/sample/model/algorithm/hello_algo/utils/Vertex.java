@@ -1,0 +1,34 @@
+package com.bnt.sample.model.algorithm.hello_algo.utils;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * 顶点类
+ */
+public class Vertex {
+    public int val;
+
+    public Vertex(int val){
+        this.val = val;
+    }
+
+    /* 输入值列表 vals ，返回顶点列表 vets */
+    public static Vertex[] valsToVets(int[] vals) {
+        Vertex[] vertices = new Vertex[vals.length];
+        for (int i = 0; i < vals.length; i++) {
+            vertices[i] = new Vertex(vals[i]);
+        }
+        return vertices;
+    }
+
+    /* 输入顶点列表 vets ，返回值列表 vals */
+    public static List<Integer> vetsToVals(List<Vertex> vets) {
+        List<Integer> vals = new ArrayList<>();
+        for (Vertex vet : vets) {
+            vals.add(vet.val);
+        }
+        return vals;
+    }
+
+}
