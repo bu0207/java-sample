@@ -10,7 +10,7 @@ import java.util.Map;
 /* 基于邻接表实现的无向图类 */
 class GraphAdjList {
     // 邻接表，key：顶点，value：该顶点的所有邻接顶点
-    private Map<Vertex, List<Vertex>> adjList;
+    Map<Vertex, List<Vertex>> adjList;
 
     public GraphAdjList(Vertex[][] edges) {
         this.adjList = new HashMap<>();
