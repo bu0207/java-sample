@@ -1,5 +1,6 @@
 package com.bnt.sample.model.algorithm.hello_algo.chapter_sorting;
 
+import java.util.Arrays;
 /**
  * 快速排序
  * <p>
@@ -22,14 +23,65 @@ class QuickSort {
 
     /* 哨兵划分 */
     static int partition(int[] nums, int left, int right) {
-
+        // 以 nums[left] 为基准数
+        int i = left, j = right;
+        while (i < j) {
+            // 从右向左找首个小于基准数的元素
+            while (i < j && nums[j] >= nums[left]) {
+                j--;
+            }
+            // 从左向右找首个大于基准数的元素
+            while (i < j && nums[i] <= nums[left]) {
+                i++;
+            }
+            // 交换这两个元素
+            swap(nums, i, j);
+        }
+        // 将基准数交换至两子数组的分界线
+        swap(nums, i, left);
+        return i;
     }
 
     /* 快速排序 */
+
+    /**
+     * 1. 首先，对原数组执行一次“哨兵划分”，得到未排序的左子数组和右子数组。
+     * 2. 然后，对左子数组和右子数组分别递归执行“哨兵划分”。
+     * 3. 持续递归，直至子数组长度为 1 时终止，从而完成整个数组的排序。
+     *
+     * @param nums
+     * @param left
+     * @param right
+     */
+    public static void quickSort(int[] nums, int left, int right) {
+        // 子数组长度为 1 时终止递归
+        if (left >= right) {
+            return;
+        }
+        // 哨兵划分
+        int i = partition(nums, left, right);
+        quickSort(nums, left, i - 1);
+        quickSort(nums, i + 1, right);
+    }
 }
 
 
 public class quick_sort {
+    public static void main(String[] args) {
+        /* 快速排序 */
+        int[] nums = {2, 4, 1, 0, 3, 5};
+        QuickSort.quickSort(nums, 0, nums.length - 1);
+        System.out.println("快速排序完成后 nums = " + Arrays.toString(nums));
 
+//        /* 快速排序（中位基准数优化） */
+//        int[] nums1 = {2, 4, 1, 0, 3, 5};
+//        QuickSortMedian.quickSort(nums1, 0, nums1.length - 1);
+//        System.out.println("快速排序（中位基准数优化）完成后 nums1 = " + Arrays.toString(nums1));
+//
+//        /* 快速排序（尾递归优化） */
+//        int[] nums2 = {2, 4, 1, 0, 3, 5};
+//        QuickSortTailCall.quickSort(nums2, 0, nums2.length - 1);
+//        System.out.println("快速排序（尾递归优化）完成后 nums2 = " + Arrays.toString(nums2));
+    }
 
 }
