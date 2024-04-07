@@ -67,4 +67,36 @@ public class merge_sort {
         mergeSort(nums, 0, nums.length - 1);
         System.out.println("归并排序完成后 nums = " + Arrays.toString(nums));
     }
+
+    // 2024.4.7练习
+    static void mergeSort2(int[] nums, int left, int right) {
+        if (left >= right) {
+            return;
+        }
+        int mid = (left + right) / 2;
+        mergeSort2(nums, left, mid);
+        mergeSort2(nums, mid + 1, right);
+        merge2(nums, left, mid, right);
+    }
+
+    static void merge2(int[] nums, int left, int mid, int right) {
+        int i = left, j = mid + 1, k = 0;
+        int[] tmp = new int[right - left + 1];
+        while (i <= mid && j <= right) {
+            if (nums[i] <= nums[j]) {
+                tmp[k++] = nums[i++];
+            } else {
+                tmp[k++] = nums[j++];
+            }
+        }
+        while (i <= mid) {
+            tmp[k++] = nums[i++];
+        }
+        while (j <= right) {
+            tmp[k++] = nums[j++];
+        }
+        for (int l = 0; l < tmp.length; l++) {
+            nums[left + l] = tmp[l];
+        }
+    }
 }
