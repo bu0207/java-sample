@@ -99,16 +99,20 @@ class MaxHeap {
     private void siftDown(int i) {
         while (true) {
             int l = left(i), r = right(i), ma = i;
+            // 判断节点 i, l, r 中值最大的节点，记为 ma
             if (l < maxHeap.size() && maxHeap.get(l) > maxHeap.get(ma)) {
                 ma = l;
             }
             if (r < maxHeap.size() && maxHeap.get(r) > maxHeap.get(ma)) {
                 ma = r;
             }
+            // 若节点 i 最大或索引 l, r 越界，则无须继续堆化，跳出
             if (ma == i) {
                 break;
             }
+            // 交换两节点
             swap(i, ma);
+            // 循环向下堆化
             i = ma;
         }
     }
