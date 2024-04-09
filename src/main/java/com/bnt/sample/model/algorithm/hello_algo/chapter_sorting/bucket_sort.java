@@ -7,10 +7,11 @@ import java.util.List;
 
 /**
  * 桶排序
- *
- *
+ * <p>
+ * <p>
  * 它通过设置一些具有大小顺序的桶，每个桶对应一个数据范围，将数据平均分配到各个桶中；
  * 然后，在每个桶内部分别执行排序；最终按照桶的顺序将所有数据合并。
+ *
  * @author bnt
  * @version 1.0.0
  * @create 2024/4/8 16:58 bnt
@@ -48,7 +49,30 @@ public class bucket_sort {
     public static void main(String[] args) {
         // 设输入数据为浮点数，范围为 [0, 1)
         float[] nums = {0.49f, 0.96f, 0.82f, 0.09f, 0.57f, 0.43f, 0.91f, 0.75f, 0.15f, 0.37f};
-        bucketSort(nums);
+        bucketSort2(nums);
         System.out.println("桶排序完成后 nums = " + Arrays.toString(nums));
+    }
+
+
+    /*2024.4.9练习*/
+    static void bucketSort2(float[] nums) {
+        int k = nums.length / 2;
+        List<List<Float>> list = new ArrayList<>();
+        for (int i = 0; i < k; i++) {
+            list.add(new ArrayList<>());
+        }
+        for (float num : nums) {
+            int i = (int) num * k;
+            list.get(i).add(num);
+        }
+        for (List<Float> floats : list) {
+            Collections.sort(floats);
+        }
+        int j = 0;
+        for (List<Float> floats : list) {
+            for (Float aFloat : floats) {
+                nums[j++] = aFloat;
+            }
+        }
     }
 }
