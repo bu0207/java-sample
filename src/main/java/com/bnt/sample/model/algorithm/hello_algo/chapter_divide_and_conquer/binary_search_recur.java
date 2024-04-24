@@ -43,7 +43,29 @@ public class binary_search_recur {
         int[] nums = {1, 3, 6, 8, 12, 15, 23, 26, 31, 35};
 
         // 二分查找（双闭区间）
-        int index = binarySearch(nums, target);
+        int index = binarySearch2(nums, target);
         System.out.println("目标元素 6 的索引 = " + index);
+    }
+
+    /**
+     * 20240424练习
+     */
+    static int binarySearch2(int[] nums, int target) {
+        int n = nums.length;
+        return dfs2(nums, target, 0, n - 1);
+    }
+
+    static int dfs2(int[] nums, int target, int left, int right) {
+        if (left > right) {
+            return -1;
+        }
+        int m = (left + right) / 2;
+        if (nums[m] < target) {
+            return dfs2(nums, target, m + 1, right);
+        } else if (nums[m] > target) {
+            return dfs2(nums, target, left, m - 1);
+        } else {
+            return m;
+        }
     }
 }
