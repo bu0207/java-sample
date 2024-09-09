@@ -5,9 +5,14 @@
     <groupId>com.bnt.sample</groupId>
     <artifactId>java-sample</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
     <name>java-sample</name>
+    <modules>
+        <module>es-test</module>
+        <module>concurrent-test</module>
+        <module>helloalgo-test</module>
+    </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
