@@ -1,5 +1,6 @@
-package com.bnt.sample.java_api;
+package com.bnt.sample.java_api.index;
 
+import com.bnt.sample.java_api.ConnectElasticsearch;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.indices.GetIndexRequest;
 import org.elasticsearch.client.indices.GetIndexResponse;

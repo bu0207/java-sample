@@ -1,4 +1,4 @@
-package com.bnt.sample.java_api;
+package com.bnt.sample.java_api.index;
 
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RequestOptions;
