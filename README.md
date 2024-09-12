@@ -5,3 +5,4 @@
 - model.algorithm.mentu 所属课程 《门徒算法》
 - model.algorithm.hello_algo 所属课程 《Hello 算法》
 链接：https://github.com/krahets/hello-algo
+- model.maven 所属书籍《Maven实战》-许晓斌
