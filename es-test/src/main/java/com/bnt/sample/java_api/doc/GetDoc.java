@@ -5,6 +5,9 @@ import org.elasticsearch.action.get.GetRequest;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.client.RequestOptions;
 
+/**
+ * 查询文档
+ */
 public class GetDoc {
     public static void main(String[] args) {
         ConnectElasticsearch.connect(client -> {

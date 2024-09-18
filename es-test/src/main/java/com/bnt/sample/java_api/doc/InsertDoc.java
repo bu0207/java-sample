@@ -8,6 +8,9 @@ import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.common.xcontent.XContentType;
 
+/**
+ * 新增文档
+ */
 public class InsertDoc {
     public static void main(String[] args) {
         ConnectElasticsearch.connect(client -> {
