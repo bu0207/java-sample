@@ -9,6 +9,9 @@ import org.elasticsearch.common.unit.Fuzziness;
 import org.elasticsearch.index.query.*;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
+import org.elasticsearch.search.aggregations.AggregationBuilder;
+import org.elasticsearch.search.aggregations.AggregationBuilders;
+import org.elasticsearch.search.aggregations.Aggregations;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightField;
@@ -207,6 +210,33 @@ public class QueryDoc {
         System.out.println("<<========");
     };
 
+    private static final ElasticsearchTask SEARCH_WITH_MAX = client -> {
+        SearchRequest searchRequest = new SearchRequest();
+        searchRequest.indices("user");
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+        searchSourceBuilder.aggregation(AggregationBuilders.max("maxAage").field("age"));
+        searchRequest.source(searchSourceBuilder);
+        SearchResponse response = client.search(searchRequest, RequestOptions.DEFAULT);
+        //4.打印响应结果
+        SearchHits hits = response.getHits();
+        Aggregations aggregations = response.getAggregations();
+        System.out.println(response);
+        System.out.println(aggregations);
+        System.out.println("<<========");
+    };
+
+    private static final ElasticsearchTask SEARCH_WITH_GROUP = client -> {
+        SearchRequest request = new SearchRequest().indices("user");
+        SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
+        sourceBuilder.aggregation(AggregationBuilders.terms("age_groupby").field("age"));
+        request.source(sourceBuilder);
+        SearchResponse response = client.search(request, RequestOptions.DEFAULT);
+        //4.打印响应结果
+        SearchHits hits = response.getHits();
+        System.out.println(response);
+        System.out.println("<<========");
+    };
+
     public static void main(String[] args) {
         ConnectElasticsearch.connect(SEARCH_MATCHALL_QUERY);
         ConnectElasticsearch.connect(SEARCH_BY_CONDITION);
@@ -216,5 +246,7 @@ public class QueryDoc {
         ConnectElasticsearch.connect(SEARCH_BY_RANGE);
         ConnectElasticsearch.connect(SEARCH_BY_FUZZY_CONDITION);
         ConnectElasticsearch.connect(SEARCH_WITH_HIGHLIGHT);
+        ConnectElasticsearch.connect(SEARCH_WITH_MAX);
+        ConnectElasticsearch.connect(SEARCH_WITH_GROUP);
     }
 }
