@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: es-springboot-test
+  elasticsearch:
+    rest:
+      password: K1BkpipAQOt9ZFOq=aYW
+      username: elastic
+      uris: http://localhost:9200
