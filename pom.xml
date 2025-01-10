@@ -12,6 +12,7 @@
         <module>es-test</module>
         <module>concurrent-test</module>
         <module>helloalgo-test</module>
+        <module>collection-map-test</module>
     </modules>
 
     <properties>
